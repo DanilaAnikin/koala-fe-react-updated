@@ -38,7 +38,7 @@ const HierarchyRow = <T extends { [key: string]: any }>({
       >
         <div className="text-center">{hasNested ? (isExpanded ? '▼' : '▶') : ''}</div>
         {computedDisplayKeys.map((key, i) => (
-          <div key={i} className="font-bold text-center break-all">
+          <div key={i} className="font-bold text-center overflow-hidden px-2">
             {renderCell(item[key])}
           </div>
         ))}
