@@ -17,7 +17,7 @@ const HierarchyTable: FC<GenericHierarchyTableProps<any>> = ({ items, onDelete, 
         <div className="grid bg-black p-2 font-bold rounded border border-gray-700" style={{ gridTemplateColumns: gridTemplate }}>
           <div></div>
           {displayKeys.map((key, index) => (
-            <div key={index} className="text-center break-all mx-1">{key}</div>
+            <div key={index} className="text-center overflow-hidden px-2">{key}</div>
           ))}
           <div className="text-center">Actions</div>
         </div>
