@@ -56,6 +56,20 @@ const HierarchyRow = <T extends { [key: string]: any }>({
       </div>
       {isExpanded && hasNested && (
         <div className="ml-4">
+          {(() => {
+            const childKeys = Array.from(
+              new Set(item.children.flatMap((child: any) => Object.keys(child).filter(k => k !== 'children')))
+            );
+            return (
+              <div className="grid bg-black p-2 font-bold border border-gray-700" style={{ gridTemplateColumns: `minmax(0, 30px) repeat(${childKeys.length}, minmax(0, 1fr)) minmax(0, 100px)` }}>
+                <div></div>
+                {childKeys.map((key, index) => (
+                  <div key={index} className="text-center overflow-hidden px-2">{key}</div>
+                ))}
+                <div className="text-center">Actions</div>
+              </div>
+            );
+          })()}
           {item.children.map((child: any, idx: number) => (
             <HierarchyRow
               key={idx}
