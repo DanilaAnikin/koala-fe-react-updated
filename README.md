@@ -1,36 +1,22 @@
-# Koala42 Assessment - Frontend - Connection with Backend
+# Koala42 Assessment - Frontend
 
 ### Description
 1) In this project I'm using NextJS and Tailwind CSS
 2) I'm using TypeScript and types are in /app/types.ts
-3) There is an api request to my Backend project in /app/api/getData.ts
-4) Also there is a function in /app/utils/getType.ts for getting a type of element
-5) Main code is in app/components/HierarchyTable.tsx and in page.tsx
+3) Main code is in app/components/HierarchyTable.tsx
 
 ### Installation
 Clone the repository and install the dependencies:
 
 ```bash
-git clone --branch connect-fe-and-be https://github.com/DanilaAnikin/koala42-assessment-frontend.git
+git clone https://github.com/DanilaAnikin/koala42-assessment-frontend.git
 cd koala42-assessment-frontend
 npm install
 ```
-You will need to clone and start my BE repository too
-```bash
-git clone https://github.com/DanilaAnikin/koala42-assessment-hiring.git
-npm install
-```
 
-### Running:
-Frontend:
+Running:
 ```bash
 npm run dev
-```
-
-Backend:
-Add your DATABASE_URL and PORT (8000 is the best option) to .env file
-```bash
-npm run start:dev
 ```
 
 ### Issues and posible improvements
@@ -46,11 +32,9 @@ Of course I could connect this code with my BE, already created code ( at github
 #### Separate functions
 I could also move functions away from .tsx files to one .ts file and importing them from there.
 
-#### Types of items
-I could maybe update the BE code instead of FE, so the Backend return right the same data types as FE needs on main branch, so I don't have to "retyping" the items.
+#### Headers mapping if
+There is one bad looking code in /app/components/HierarchyTable.tsx, where I am looking for specific header. Instead of that I could better do it in JavaScript and return the data separately
 
 #### Style and design
 If I spend more time on that, I could manage the design and correct my styles so it looks better. 
 In the assessment was that I don't have to spend much time on that, so I didn't.
-# koala-fe-react-updated
-# koala-fe-react-updated
