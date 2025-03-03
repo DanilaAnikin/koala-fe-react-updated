@@ -7,7 +7,13 @@ function renderCell(value: any) {
   return value;
 }
 
-const HierarchyRow = <T extends { [key: string]: any }>({ item, onDelete, excludeKeys = [], displayKeys }: HierarchyRowProps<T>) => {
+const HierarchyRow = <T extends { [key: string]: any }>({
+  item,
+  onDelete,
+  excludeKeys = [],
+  displayKeys,
+  path = []
+}: HierarchyRowProps<T> & { path?: number[] }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const computedDisplayKeys =
@@ -31,27 +37,22 @@ const HierarchyRow = <T extends { [key: string]: any }>({ item, onDelete, exclud
         onClick={toggleExpand}
       >
         <div className="text-center">{hasNested ? (isExpanded ? '▼' : '▶') : ''}</div>
-
         {computedDisplayKeys.map((key, i) => (
           <div key={i} className="font-bold text-center break-all">
             {renderCell(item[key])}
           </div>
         ))}
-
         <div className="text-center">
-          {'ID' in item && (
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete(item);
-              }}
-              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-all duration-400"
-            >
-              Delete
-            </button>
-          )}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(path);
+            }}
+            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-all duration-400"
+          >
+            Delete
+          </button>
         </div>
-
       </div>
       {isExpanded && hasNested && (
         <div className="ml-4">
@@ -62,6 +63,7 @@ const HierarchyRow = <T extends { [key: string]: any }>({ item, onDelete, exclud
               onDelete={onDelete}
               excludeKeys={excludeKeys}
               displayKeys={[]}
+              path={[...path, idx]}
             />
           ))}
         </div>

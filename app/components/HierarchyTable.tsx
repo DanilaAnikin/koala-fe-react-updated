@@ -6,20 +6,16 @@ const HierarchyTable: FC<GenericHierarchyTableProps<any>> = ({ items, onDelete, 
   if (!items || items.length === 0) return <div>No data</div>;
 
   const firstItem = items[0];
-  
   const displayKeys = Object.keys(firstItem).filter(
     key => !excludeKeys.includes(key) && key !== 'children'
   );
-
   const gridTemplate = `minmax(0, 30px) repeat(${displayKeys.length}, minmax(0, 1fr)) minmax(0, 100px)`;
 
   return (
     <div className="border border-slate-100 p-2 rounded">
       {displayKeys.length > 0 && (
-
         <div className="grid bg-black p-2 font-bold rounded border border-gray-700" style={{ gridTemplateColumns: gridTemplate }}>
           <div></div>
-
           {displayKeys.map((key, index) => (
             <div key={index} className="text-center break-all mx-1">{key}</div>
           ))}
@@ -33,6 +29,7 @@ const HierarchyTable: FC<GenericHierarchyTableProps<any>> = ({ items, onDelete, 
           onDelete={onDelete}
           excludeKeys={excludeKeys}
           displayKeys={displayKeys}
+          path={[index]}
         />
       ))}
     </div>

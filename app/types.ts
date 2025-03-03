@@ -51,9 +51,10 @@ export interface GenericHierarchyTableProps<T extends object> {
   excludeKeys?: string[];
 }
 
-export interface HierarchyRowProps<T extends object> {
+export interface HierarchyRowProps<T extends { [key: string]: any }> {
   item: T;
-  onDelete: (item: T) => void;
-  displayKeys: string[];
+  onDelete: (path: number[]) => void;
   excludeKeys?: string[];
+  displayKeys?: string[];
+  path?: number[];
 }
